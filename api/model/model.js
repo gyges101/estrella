@@ -26,6 +26,49 @@ const AdminModel = new mongoose.Schema({
     }
 })
 
+const LivreurModel = new mongoose.Schema({
+    name : {
+        type: String,
+        required: true
+    }, 
+    chatId: {
+        type: String,
+        required: true
+    }
+})
+
+const CategorieModel = new mongoose.Schema({
+    name : {
+        type: String,
+        required: true
+    }, 
+    icon: {
+        data: Buffer,
+        contentType: String
+    }
+})
+
+const ArticleModel = new mongoose.Schema({
+    categorie: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Categorie'
+    },
+    name : {
+        type: String,
+        required: true
+    }, 
+    price : {
+        type: Number,
+        required: true
+    }, 
+    image: {
+        data: Buffer,
+        contentType: String
+    }
+})
+
+
+
 
 // Encrypting Before Saving
 UsersModel.pre('save', function(next) {
@@ -66,7 +109,11 @@ UsersModel.methods.comparePassword = function(candidatePassword, cb) {
 // Schemas Serialization 
 const Users = mongoose.model('users', UsersModel);
 const Admin = mongoose.model('admin', AdminModel);
+const Livreur = mongoose.model('livreur', LivreurModel);
+const Categorie = mongoose.model('categorie', CategorieModel);
+const Article = mongoose.model('article', ArticleModel);
+
 
 module.exports = {
-    Users, Admin
+    Users, Admin, Livreur, Categorie, Article
 }

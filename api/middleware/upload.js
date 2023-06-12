@@ -23,3 +23,29 @@ let uploadFile = multer({
 
 let uploadFileMiddleware = util.promisify(uploadFile);
 module.exports = uploadFileMiddleware;
+
+// use in image upload
+
+// const storage = multer.memoryStorage();
+// const upload = multer({ storage: storage });
+
+// app.post('/users/:id/upload', upload.single('profileImage'), (req, res) => {
+//   User.findById(req.params.id, (err, user) => {
+//     if (err) {
+//       res.status(500).json({ error: 'Error finding user' });
+//       return;
+//     }
+
+//     user.profileImage.data = req.file.buffer;
+//     user.profileImage.contentType = req.file.mimetype;
+
+//     user.save((saveErr) => {
+//       if (saveErr) {
+//         res.status(500).json({ error: 'Error saving user profile image' });
+//         return;
+//       }
+
+//       res.json({ message: 'Profile image uploaded successfully' });
+//     });
+//   });
+// });

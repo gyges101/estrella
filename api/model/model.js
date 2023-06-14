@@ -72,10 +72,6 @@ UsersModel.pre('save', function(next) {
     // Hash only new users and ignore on update
     if (!user.isModified('password')) return next();
 
-    if (user.role == 0){
-        Admin.insertMany(user._id)
-    }
-
     // else if (user.role == 1){
     //     Prof.insertMany(user._id)
     // }

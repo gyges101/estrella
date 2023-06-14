@@ -11,6 +11,7 @@ const uploadPathFolder = path.dirname(require.main.filename);
 const { SECRETHASH = "secret" } = process.env;
 const mongoString = process.env.DB_HOST;
 const database = mongoose.connection;
+var bcrypt = require('bcrypt');
 
 mongoose.connect(mongoString);
 
@@ -55,5 +56,33 @@ router.delete('/userdelete:id', async(req, res) => {
         res.status(500).json({message: error.message})
     }
 })
+
+// Login Route
+router.post("/login", async (req, res) => {
+    try {
+      const user = await Model.Users.findOne({ email: req.body.email });
+       
+      if (user) {
+        
+        bcrypt.compare(req.body.password, user.password, (err, data) => {
+           
+            if (err) throw err;
+            if (data) {
+                const token = jwt.sign({ email: user.email, id: user._id, prenom: user.prenom, nom: user.nom, role: user.role }, SECRETHASH)
+                return res.status(200).json({ token });
+            } else {
+                res.status(400).json({ error: "password doesn't match" });
+            }
+        })
+
+
+      } else {
+        res.status(400).json({ error: "User doesn't exist" });
+      }
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+})
+
 
 module.exports = router

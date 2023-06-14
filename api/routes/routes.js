@@ -25,9 +25,35 @@ database.once('connected', () => {
 })
 
 
-router.post('/addRemarque', async (req, res) => {
-
+// Singup View 
+router.post('/addUser', async (req, res) => {
+    var userInstance = new Model.Users({
+        role: req.body.role,
+        email: req.body.email,
+        password: req.body.password
+    })
+    
+    try {
+        const savedData = await userInstance.save();
+        res.status(200).json(savedData)
+    }
+    catch (err) {
+        res.status(400).json({message: err.message})
+    }
 })
 
+router.delete('/userdelete:id', async(req, res) => {
+
+    let id = req.params.id
+    id = id.replace(":", "")
+    
+    try{
+        const data = await Model.Users.deleteOne({_id: id})
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
 
 module.exports = router

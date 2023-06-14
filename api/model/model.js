@@ -19,12 +19,7 @@ const UsersModel = new mongoose.Schema({
     }
 })
 
-// Admin Model
-const AdminModel = new mongoose.Schema({
-    user_id: {
-        UsersModel
-    }
-})
+
 
 const LivreurModel = new mongoose.Schema({
     name : {
@@ -108,12 +103,11 @@ UsersModel.methods.comparePassword = function(candidatePassword, cb) {
 
 // Schemas Serialization 
 const Users = mongoose.model('users', UsersModel);
-const Admin = mongoose.model('admin', AdminModel);
 const Livreur = mongoose.model('livreur', LivreurModel);
 const Categorie = mongoose.model('categorie', CategorieModel);
 const Article = mongoose.model('article', ArticleModel);
 
 
 module.exports = {
-    Users, Admin, Livreur, Categorie, Article
+    Users, Livreur, Categorie, Article
 }

@@ -6,7 +6,8 @@ const routes = require('./routes/routes');
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:4200'
+    origin: 'http://localhost:4200',
+    origin: 'http://localhost:4300'
 }));
 
 app.use(express.json());

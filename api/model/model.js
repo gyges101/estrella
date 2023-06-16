@@ -38,8 +38,8 @@ const CategorieModel = new mongoose.Schema({
         required: true
     }, 
     icon: {
-        data: Buffer,
-        contentType: String
+        type: String,
+        required: true,
     }
 })
 
@@ -51,7 +51,11 @@ const ArticleModel = new mongoose.Schema({
     name : {
         type: String,
         required: true
-    }, 
+    },
+    description : {
+        type: String,
+        required: true
+    },     
     price : {
         type: Number,
         required: true

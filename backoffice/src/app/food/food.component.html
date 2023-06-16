@@ -1,1 +1,81 @@
-<p>food works!</p>
+<app-main>
+    <div class="row mb-3">
+        
+        <div class="col-md-3 d-inline">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nom</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="foodForm.name" name="name" placeholder="Categorie">
+            </div>
+        </div>
+        <div class="col-md-2 d-inline">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Price</label>
+                <input type="text" class="form-control" id="priceid" [(ngModel)]="foodForm.price" name="price" placeholder="Price">
+            </div>
+        </div>        
+        <div class="col-md-4 d-inline">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Categorie</label>
+                <select id="inputState" class="form-control" [(ngModel)]="foodForm.categorie" name="categorie">
+                    <option selected>Selectioner</option>
+                    <option *ngFor="let i of categorie" value="{{i._id}}">{{i.name}}</option>
+                  </select>
+            </div>
+        </div>
+        <div class="col-md-4 d-inline">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Description</label>
+                <input type="text" class="form-control" id="description" [(ngModel)]="foodForm.description" name="description" placeholder="Description">
+            </div>
+        </div>
+        <div class="col-md-4 d-inline">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Image</label>
+                <input type="text" class="form-control" id="imageid" [(ngModel)]="foodForm.image" name="image" placeholder="Image">
+            </div>
+        </div>
+        <div class="col-md-4 d-inline">
+            <button type="button" (click)="addFood()" class="btn btn-outline-secondary btn-uppercase" data-toggle="modal" data-target="#exampleModal">
+                <i class="ti-plus mr-2"></i> Nouveau Article
+            </button>
+        </div>
+
+
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">Articles</h6>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th>Price</th>
+                        <th scope="col">image</th>
+                        <th scope="col">Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let i of data">
+                        <th scope="row">{{i.name}}</th>
+                        <td>{{i.price}}</td>
+                        <th>
+                            <figure class="avatar avatar-sm">
+                                <img src="../../assets/media/image/user/women_avatar5.jpg" class="rounded-circle" alt="image">
+                            </figure>
+                        </th>
+                        <td>
+                            <span class="badge badge-success">Supprimer</span>
+                        </td>
+                    </tr>
+                  
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+</app-main>

@@ -4,14 +4,14 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const Model = require('../model/model');
 const mongoose = require('mongoose');
-const uploadFile = require('../middleware/upload');
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
 const uploadPathFolder = path.dirname(require.main.filename);
 const { SECRETHASH = "secret" } = process.env;
 const mongoString = process.env.DB_HOST;
 const database = mongoose.connection;
 var bcrypt = require('bcrypt');
+
 
 mongoose.connect(mongoString);
 
@@ -81,6 +81,62 @@ router.post("/login", async (req, res) => {
       }
     } catch (error) {
       res.status(400).json({ error });
+    }
+})
+
+// Category View 
+router.post('/addCategorie', async (req, res) => {
+
+    var CategorieInstance = new Model.Categorie({
+        name: req.body.name,
+        icon: req.body.icon
+    })
+    try {
+        const savedData = await CategorieInstance.save();
+        res.status(200).json(savedData)
+    }
+    catch (err) {
+        res.status(400).json({message: err.message})
+    }
+})
+
+router.get('/getCategorie', async (req, res) => {
+    try{
+        const data = await Model.Categorie.find();
+        res.json(data)
+    }
+    catch {
+        res.status(400).json({message: error.message})
+    }
+})
+
+
+// Food View 
+router.post('/addFood', async (req, res) => {
+
+    var FoodInstance = new Model.Article({
+        name: req.body.name,
+        categorie: req.body.categorie,
+        description: req.body.description,
+        price: req.body.price,
+        image: req.body.image
+    })
+    try {
+        const savedData = await FoodInstance.save();
+        res.status(200).json(savedData)
+    }
+    catch (err) {
+        res.status(400).json({message: err.message})
+    }
+})
+
+router.get('/getFood', async (req, res) => {
+    try{
+        const data = await Model.Article.find();
+        res.json(data)
+    }
+    catch {
+        res.status(400).json({message: error.message})
     }
 })
 

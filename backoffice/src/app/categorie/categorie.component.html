@@ -1,1 +1,58 @@
-<p>categorie works!</p>
+<app-main>
+    <div class="row mb-3">
+        
+        <div class="col-md-4 d-inline">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Categorie</label>
+                <input type="text" class="form-control" id="categorieid" [(ngModel)]="categorieForm.name" name="name" placeholder="Categorie">
+            </div>
+        </div>
+        <div class="col-md-4 d-inline">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Categorie</label>
+                <input type="text" class="form-control" id="categorieid" [(ngModel)]="categorieForm.icon" name="icon" placeholder="Icon">
+            </div>
+        </div>
+        <div class="col-md-4 d-inline">
+            <button type="button" (click)="addCategorie()" class="btn btn-outline-secondary btn-uppercase" data-toggle="modal" data-target="#exampleModal">
+                <i class="ti-plus mr-2"></i> Nouveau Categorie
+            </button>
+        </div>
+
+
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">Categories</h6>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Icon</th>
+                        <th scope="col">Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let i of data">
+                        <th scope="row">{{i.name}}</th>
+                        <th>
+                            <figure class="avatar avatar-sm">
+                                <img src="../../assets/media/image/user/women_avatar5.jpg" class="rounded-circle" alt="image">
+                            </figure>
+                        </th>
+                        <td>
+                            <span class="badge badge-success">Supprimer</span>
+                        </td>
+                    </tr>
+                  
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+</app-main>

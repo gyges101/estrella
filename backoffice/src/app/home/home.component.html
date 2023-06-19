@@ -1,8 +1,27 @@
 <app-main>
     <div class="card">
         <div class="card-body">
-            <h6 class="card-title">Content Title</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab consequuntur debitis dignissimos doloremque fuga ipsa itaque magnam mollitia, necessitatibus neque officiis quam quas quia reiciendis reprehenderit sed suscipit ut voluptas.</p>
+            <h6 class="card-title">Telegram Configuration</h6>
+            <div class="row mb-3">
+        
+                <div class="col-md-4 d-inline">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Token Bot</label>
+                        <input type="text" class="form-control" id="tokenbot" [(ngModel)]="telegramForm.tokenbot" name="name" placeholder="Token Bot" >
+                    </div>
+                </div>
+                <div class="col-md-4 d-inline">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">chat Id</label>
+                        <input type="text" class="form-control" id="chatId" [(ngModel)]="telegramForm.chatId" name="icon" placeholder="Chat Id">
+                    </div>
+                </div>
+                <div class="col-md-4 d-inline">
+                    <button type="button" (click)="changeTelegram()" class="btn btn-outline-secondary btn-uppercase" data-toggle="modal" data-target="#exampleModal">
+                        <i class="ti-plus mr-2"></i> Changer Token
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </app-main>

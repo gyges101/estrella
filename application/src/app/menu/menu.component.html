@@ -9,14 +9,14 @@
                 <div class="row">
                     
                     <!-- Cat Item -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <a href="single-food.html">
+                    <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let i of data">
+                        <a [routerLink]="['/food']" [queryParams]="{ id:i._id }">
                             <div class="food-grid-item grid-style-two">
                                 <div class="food-thumb">
-                                    <img src="assets/images/foodmenu/menu6/food1.jpg" alt="Food">
+                                    <img src="{{host}}{{i.icon}}" alt="Food">
                                 </div>
                                 <div class="food-info">
-                                    <h3 class="food-title">Chicken</h3>
+                                    <h3 class="food-title">{{i.name}}</h3>
                                     
                                 </div>
                             </div>

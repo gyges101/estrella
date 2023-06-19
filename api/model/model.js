@@ -20,6 +20,16 @@ const UsersModel = new mongoose.Schema({
 })
 
 
+const TelegramModel = new mongoose.Schema({
+    tokenbot : {
+        type: String,
+        required: true
+    }, 
+    chatId: {
+        type: String,
+        required: true
+    }
+})
 
 const LivreurModel = new mongoose.Schema({
     name : {
@@ -106,8 +116,9 @@ const Users = mongoose.model('users', UsersModel);
 const Livreur = mongoose.model('livreur', LivreurModel);
 const Categorie = mongoose.model('categorie', CategorieModel);
 const Article = mongoose.model('article', ArticleModel);
+const TelegramBot = mongoose.model('telegrambot',TelegramModel);
 
 
 module.exports = {
-    Users, Livreur, Categorie, Article
+    Users, Livreur, Categorie, Article, TelegramBot
 }

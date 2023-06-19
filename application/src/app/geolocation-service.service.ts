@@ -10,7 +10,6 @@ export class GeolocationServiceService {
   getCurrentLocation(): Promise<GeolocationCoordinates> {
 
     return new Promise((resolve, reject) => {
-      
       if (!navigator.geolocation) {
         reject('Geolocation is not supported by your browser');
       } else {
@@ -19,7 +18,6 @@ export class GeolocationServiceService {
           (error) => reject('Unable to retrieve your location')
         );
       }
-
     });
 
   }

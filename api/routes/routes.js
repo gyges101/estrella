@@ -120,25 +120,63 @@ router.post('/addFood', async (req, res) => {
         description: req.body.description,
         price: req.body.price,
         image: req.body.image
-    })
+    });
     try {
         const savedData = await FoodInstance.save();
-        res.status(200).json(savedData)
+        res.status(200).json(savedData);
     }
     catch (err) {
-        res.status(400).json({message: err.message})
+        res.status(400).json({message: err.message});
     }
 })
 
 router.get('/getFood', async (req, res) => {
     try{
         const data = await Model.Article.find();
-        res.json(data)
+        res.json(data);
     }
     catch {
-        res.status(400).json({message: error.message})
+        res.status(400).json({message: error.message});
     }
 })
 
+router.get('/getFoodById:id', async (req, res) => {
+    let id = req.params.id
+    id = id.replace(":", "")
+
+    try{
+        const data = await Model.Article.find({categorie: id});
+        res.json(data);
+    }
+    catch {
+        res.status(400).json({message: error.message});
+    }
+})
+
+// TelegramBot View 
+router.post('/addTelegram', async (req, res) => {
+
+    var TelegramInstance = new Model.TelegramBot({
+        tokenbot: req.body.tokenbot,
+        chatId: req.body.chatId
+    });
+    try {
+        const savedData = await TelegramInstance.save();
+        res.status(200).json(savedData);
+    }
+    catch (err) {
+        res.status(400).json({message: err.message});
+    }
+})
+
+router.get('/getTelegram', async (req, res) => {
+    try{
+        const data = await Model.TelegramBot.find();
+        res.json(data);
+    }
+    catch {
+        res.status(400).json({message: error.message});
+    }
+})
 
 module.exports = router
